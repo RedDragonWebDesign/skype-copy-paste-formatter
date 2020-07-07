@@ -12,6 +12,12 @@ class SkypeCopyPasteFormatter {
 	
 	getFormattedText(unformattedText, username1) {
 		this.unformattedText = unformattedText;
+		
+		// if we already formatted this text
+		if ( this.unformattedText.trim().left(2) === '[[' ) {
+			return this.unformattedText;
+		}
+		
 		this.username1 = username1;
 		this._findOtherUsername();
 		this.currentUsername = "";
@@ -103,21 +109,27 @@ class SkypeCopyPasteFormatter {
 		for ( let key in this.lines ) {
 			s += '[[' + this.lines[key]['username'] + "]] " + this.lines[key]['text'] + "\n";
 		}
-		return s;
+		return s.trim();
 		
 		// for debugging:
 		// return JSON.stringify(this.lines).replace(/\},"/g, "\"\n\"");
 	}
 }
 
+Object.assign(String.prototype, {
+	/** @description "Testing 123".left(4) = "Test" */
+	left(length) {
+		return this.slice(0, length);
+	},
+});
+
 window.addEventListener('DOMContentLoaded', (e) => {
 	let username = document.getElementById('username');
-	let unformatted = document.getElementById('unformatted');
+	let log = document.getElementById('log');
 	let format = document.getElementById('format');
-	let formatted = document.getElementById('formatted');
 	
 	format.addEventListener('click', function(e) {
 		let formatter = new SkypeCopyPasteFormatter();
-		formatted.value = formatter.getFormattedText(unformatted.value, username.value);
+		log.value = formatter.getFormattedText(log.value, username.value);
 	});
 });

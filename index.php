@@ -23,7 +23,7 @@
 	</p>
 	
 	<p>
-	<textarea id="unformatted">I'm getting ready to consider 2k (not 4k) for a main monitor 
+	<textarea id="log">I'm getting ready to consider 2k (not 4k) for a main monitor 
 
 But, I don't want to spend too much
 
@@ -48,10 +48,6 @@ And it stresses out the VC more than 1080p or 2k</textarea>
 	
 	<p>
 	<button id="format">Format Skype Log</button>
-	</p>
-	
-	<p>
-	<textarea id="formatted"></textarea>
 	</p>
 	
 	<p>
