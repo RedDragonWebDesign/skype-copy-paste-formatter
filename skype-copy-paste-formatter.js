@@ -42,6 +42,11 @@ class SkypeCopyPasteFormatter {
 			}
 		}
 		
+		// if there is no 2nd username
+		if ( ! firstLinesUsername ) {
+			firstLinesUsername = this.username1;
+		}
+		
 		// iterate through first few lines, set them to firstLinesUsername
 		for ( let key in this.lines ) {
 			let username = this.lines[key]['username'];
@@ -88,7 +93,9 @@ class SkypeCopyPasteFormatter {
 	_findOtherUsername() {
 		var myRegexp = /^(.*), \d{1,2}:\d{2} (AM|PM)$/m;
 		var match = myRegexp.exec(this.unformattedText);
-		this.username2 = match[1];
+		if ( match ) {
+			this.username2 = match[1];
+		}
 	}
 	
 	_convertLinesObjectToString() {
