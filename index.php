@@ -4,7 +4,6 @@
 
 <head>
 	<title>Skype Copy Paste Formatter</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css" />
 	<script type="module" src="skype-copy-paste-formatter.js"></script>
 </head>
