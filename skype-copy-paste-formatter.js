@@ -123,13 +123,26 @@ Object.assign(String.prototype, {
 	},
 });
 
+function getCookie(name) {
+	const value = `; ${document.cookie}`;
+	const parts = value.split(`; ${name}=`);
+	if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 window.addEventListener('DOMContentLoaded', (e) => {
 	let username = document.getElementById('username');
 	let log = document.getElementById('log');
 	let format = document.getElementById('format');
 	
+	let cookieUsername = getCookie('username');
+	if ( cookieUsername ) {
+		username.value = cookieUsername;
+	}
+	
 	format.addEventListener('click', function(e) {
 		let formatter = new SkypeCopyPasteFormatter();
 		log.value = formatter.getFormattedText(log.value, username.value);
+		
+		document.cookie = 'username=' + username.value;
 	});
 });
