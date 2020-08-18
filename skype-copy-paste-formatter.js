@@ -31,6 +31,7 @@ class SkypeCopyPasteFormatter {
 	
 	/** The first couple of lines don't have a username yet. Find the first known username, then use that to fix these first couple of lines. */
 	_fixUsernameOnFirstLines() {
+		/*
 		let firstLinesUsername = "";
 		
 		// find first known username, set firstLinesUsername variable to opposite username
@@ -52,13 +53,15 @@ class SkypeCopyPasteFormatter {
 		if ( ! firstLinesUsername ) {
 			firstLinesUsername = this.username1;
 		}
+		*/
 		
-		// iterate through first few lines, set them to firstLinesUsername
+		// iterate through first few lines, set them to [[???]], since we can't guarantee that the first lines are a certain username, when Skype does its groupings it does them by time, not by username
 		for ( let key in this.lines ) {
 			let username = this.lines[key]['username'];
 			
 			if ( ! username ) {
-				this.lines[key]['username'] = firstLinesUsername;
+				// this.lines[key]['username'] = firstLinesUsername;
+				this.lines[key]['username'] = '???';
 			} else {
 				break;
 			}
