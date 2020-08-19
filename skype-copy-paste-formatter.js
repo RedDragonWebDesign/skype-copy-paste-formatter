@@ -14,7 +14,7 @@ class SkypeCopyPasteFormatter {
 		this.unformattedText = unformattedText;
 		
 		// if we already formatted this text
-		if ( this.unformattedText.trim().left(2) === '[[' ) {
+		if ( this.unformattedText.trim().startsWith('[[') ) {
 			return this.unformattedText;
 		}
 		
@@ -118,13 +118,6 @@ class SkypeCopyPasteFormatter {
 		// return JSON.stringify(this.lines).replace(/\},"/g, "\"\n\"");
 	}
 }
-
-Object.assign(String.prototype, {
-	/** @description "Testing 123".left(4) = "Test" */
-	left(length) {
-		return this.slice(0, length);
-	},
-});
 
 function getCookie(name) {
 	const value = `; ${document.cookie}`;
