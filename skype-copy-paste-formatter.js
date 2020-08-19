@@ -110,7 +110,7 @@ class SkypeCopyPasteFormatter {
 	_convertLinesObjectToString() {
 		let s = "";
 		for ( let key in this.lines ) {
-			s += '[[' + this.lines[key]['username'] + "]] " + this.lines[key]['text'] + "\n";
+			s += '[[' + this.lines[key]['username'] + "]] " + this.lines[key]['text'].trim() + "\n";
 		}
 		return s.trim();
 		
