@@ -59,7 +59,7 @@ But its gonna be awhile before 4k
 
 Cause gaming still not there
 
-==================================================
+========================= Already formatted (don't double format)
 
 [[Bob44]] I'm getting ready to consider 2k (not 4k) for a main monitor 
 [[Bob44]] But, I don't want to spend too much
@@ -70,3 +70,46 @@ Cause gaming still not there
 [[Jeff22]] Yeah. Gpus are getting good, but increasing res and hz brings them back down to mediocre
 [[Bob44]] Yeah, but 4k can't even have 144hz yet
 [[Bob44]] And it stresses out the VC more than 1080p or 2k
+
+========================= First group is other username, not your username
+
+Line 1
+
+Line 2
+
+
+User1, 3:16 PM
+Line 1
+
+Line 2
+
+
+User1, 4:02 PM
+Line 1
+
+Line 2
+
+Line 1
+
+Line 2
+
+Line 1
+
+Line 2
+
+Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line 
+
+4:21 PM
+Line 1
+Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line 
+Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line 
+Line 2
+User1, 4:26 PM
+Line 1
+
+Line 2
+
+========================= Trim test (1 space at end of every line)
+
+Testing 123 
+Testing 123 
