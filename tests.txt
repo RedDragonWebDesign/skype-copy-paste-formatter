@@ -113,3 +113,15 @@ Line 2
 
 Testing 123 
 Testing 123 
+
+========================= One name, no label at top. Should print [[userEnteredName]], not [[???]]
+
+abcde
+
+abcde
+
+abcde
+
+========================= Fix line breaks
+
+Testing.Hello, how are you?I'm good, you?

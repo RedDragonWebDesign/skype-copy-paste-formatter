@@ -6,9 +6,10 @@
 class SkypeCopyPasteFormatter {
 	unformattedText = "";
 	formattedText = "";
-	username1 = "";
-	username2 = "";
+	username1 = ""; // name from "Your Username" text box
+	username2 = ""; // name extracted from log, interlocutor username
 	lines = {};
+	linesWithKnownUsernameCount = 0;
 	
 	getFormattedText(unformattedText, username1) {
 		this.unformattedText = unformattedText;
@@ -31,37 +32,16 @@ class SkypeCopyPasteFormatter {
 	
 	/** The first couple of lines don't have a username yet. Find the first known username, then use that to fix these first couple of lines. */
 	_fixUsernameOnFirstLines() {
-		/*
-		let firstLinesUsername = "";
-		
-		// find first known username, set firstLinesUsername variable to opposite username
-		for ( let key in this.lines ) {
-			let username = this.lines[key]['username'];
-			
-			if ( username ) {
-				if ( username === this.username1 ) {
-					firstLinesUsername = this.username2;
-				} else if ( username === this.username2 ) {
-					firstLinesUsername = this.username1;
-				}
-				
-				break;
-			}
-		}
-		
-		// if there is no 2nd username
-		if ( ! firstLinesUsername ) {
-			firstLinesUsername = this.username1;
-		}
-		*/
-		
 		// iterate through first few lines, set them to [[???]], since we can't guarantee that the first lines are a certain username, when Skype does its groupings it does them by time, not by username
 		for ( let key in this.lines ) {
 			let username = this.lines[key]['username'];
 			
 			if ( ! username ) {
-				// this.lines[key]['username'] = firstLinesUsername;
-				this.lines[key]['username'] = '???';
+				if ( this.linesWithKnownUsernameCount ) {
+					this.lines[key]['username'] = '???';
+				} else {
+					this.lines[key]['username'] = this.username1;
+				}
 			} else {
 				break;
 			}
@@ -81,6 +61,7 @@ class SkypeCopyPasteFormatter {
 			// if line contains a time (which is how we know username is changing)
 			if ( value.search(/^((.*), )?\d{1,2}:\d{2} (AM|PM)$/m) !== -1 ) {
 				isTime = true;
+				this.linesWithKnownUsernameCount++;
 				
 				if ( value.search(/^(.*), \d{1,2}:\d{2} (AM|PM)$/m) !== -1 ) {
 					currentUsername = this.username2;
