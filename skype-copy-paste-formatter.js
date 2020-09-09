@@ -50,7 +50,12 @@ class SkypeCopyPasteFormatter {
 	
 	/** Makes this.lines. Also deletes blank lines, and marks lines that are times/usernames. */
 	_makeLinesObject() {
-		let lines = this.unformattedText.split("\n");
+		// Split in a couple different spots:
+		// - newline character
+		// - the pattern Text text text.Text text text. (split at the period)
+		// - the pattern Text text text?Text text text. (split at the question mark)
+		// - the pattern Text text text!Text text text. (split at the exclamation mark)
+		let lines = this.unformattedText.split(/(?<=(?:\.|\?|!))(?=[A-Z])/).join("\n").split("\n");
 		this.lines = {};
 		let currentUsername = "";
 		

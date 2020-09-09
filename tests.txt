@@ -43,7 +43,7 @@ But, I don't want to spend too much
 7:27 PM
 Have you tried out 2k? Is it notoceably better?
 
-==================================================
+================================================== [???]
 
 I'm getting ready to consider 2k (not 4k) for a main monitor 
 
@@ -124,4 +124,9 @@ abcde
 
 ========================= Fix line breaks
 
-Testing.Hello, how are you?I'm good, you?
+Testing.Hello, how are you?I'm good, you?I'm excellent!That's great to hear.
+This is a test.
+Of the emergency broadcast system.
+
+I see.
+Ok.
