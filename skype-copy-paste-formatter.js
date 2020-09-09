@@ -47,8 +47,14 @@ class SkypeCopyPasteFormatter {
 		};
 		
 		for ( let rule in fancyPunctuation ) {
-			this.unformattedText = this.unformattedText.replace(rule, fancyPunctuation[rule]);
+			this.unformattedText = this._globalReplace(this.unformattedText, rule, fancyPunctuation[rule]);
 		}
+	}
+	
+	// https://stackoverflow.com/a/542260/3480193
+	_globalReplace(original, searchTxt, replaceTxt) {
+		const regex = new RegExp(searchTxt, 'g');
+		return original.replace(regex, replaceTxt) ;
 	}
 	
 	/** The first couple of lines don't have a username yet. Find the first known username, then use that to fix these first couple of lines. */
