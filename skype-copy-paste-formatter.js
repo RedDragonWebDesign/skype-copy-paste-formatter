@@ -19,6 +19,7 @@ class SkypeCopyPasteFormatter {
 			return this.unformattedText;
 		}
 		
+		this._removeFancyPunctuation();
 		this.username1 = username1;
 		this._findOtherUsername();
 		this.currentUsername = "";
@@ -28,6 +29,26 @@ class SkypeCopyPasteFormatter {
 		this.formattedText = this._convertLinesObjectToString();
 		
 		return this.formattedText;
+	}
+	
+	_removeFancyPunctuation() {
+		// I spotted some fancy quotes in a Skype message. I was unable to duplicate, but let's replace some common MS Office fancy characters just in case.
+		let fancyPunctuation = {
+			'“': '"',
+			'”': '"',
+			'‘': '\'',
+			'’': '\'',
+			'¼': '1/4',
+			'½': '1/2',
+			'¾': '3/4',
+			'–': '-',
+			'—': '--',
+			'…': '...',
+		};
+		
+		for ( let rule in fancyPunctuation ) {
+			this.unformattedText = this.unformattedText.replace(rule, fancyPunctuation[rule]);
+		}
 	}
 	
 	/** The first couple of lines don't have a username yet. Find the first known username, then use that to fix these first couple of lines. */
