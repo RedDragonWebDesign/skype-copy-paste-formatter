@@ -55,6 +55,10 @@ And it stresses out the VC more than 1080p or 2k</textarea>
 	<p>
 	Want to report a bug or request a feature? <a href="https://github.com/RedDragonWebDesign/skype-copy-paste-formatter/issues">Create an issue</a> on our GitHub.
 	</p>
+	
+	<p>
+	Like the tool? <a href="https://github.com/RedDragonWebDesign/skype-copy-paste-formatter">Leave us a star</a> on GitHub.
+	</p>
 </body>
 
 </html>
