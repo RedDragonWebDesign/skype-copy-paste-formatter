@@ -21,7 +21,7 @@ class SkypeCopyPasteFormatter {
 		}
 		
 		this._removeFancyPunctuation();
-		this.username1 = username1;
+		this.username1 = username1 ? username1 : '???';
 		this.line1Username = line1Username ? line1Username : '???';
 		this._findOtherUsername();
 		this.currentUsername = "";
