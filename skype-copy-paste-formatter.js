@@ -107,7 +107,7 @@ class SkypeCopyPasteFormatter {
 				}
 			}
 			
-			// delete blank lines & times
+			// delete blank lines & delete times
 			if ( value && ! isTime ) {
 				this.lines[key] = {
 					"username": currentUsername,
