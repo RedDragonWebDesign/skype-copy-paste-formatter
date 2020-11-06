@@ -144,6 +144,9 @@ function setValueAndUpdateUndoStack(textarea, text) {
 	if ( ! document.execCommand('insertText', false, text) ) {
 		textarea.setRangeText(text);
 	}
+	
+	// TODO: unselect all
+	// I tried a bunch of code. Couldn't get it to work.
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
