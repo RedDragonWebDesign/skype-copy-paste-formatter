@@ -18,7 +18,9 @@
 	</p>
 	
 	<p>
-	Your Username: <input type="text" id="username" value="Jeff22"><br>
+	Your Username: <input type="text" id="username" value="Jeff22"><br />
+	Other Person's Username: [Will Be Detected]<br />
+	Line 1 Username: <input type="text" id="line-1-username" value="Jeff22"><br />
 	</p>
 	
 	<p>

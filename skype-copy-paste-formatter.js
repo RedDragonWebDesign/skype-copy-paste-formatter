@@ -8,10 +8,11 @@ class SkypeCopyPasteFormatter {
 	formattedText = "";
 	username1 = ""; // name from "Your Username" text box
 	username2 = ""; // name extracted from log, interlocutor username
+	line1Username = ""; // name from "Line 1 Username" text box
 	lines = {};
 	linesWithKnownUsernameCount = 0;
 	
-	getFormattedText(unformattedText, username1) {
+	getFormattedText(unformattedText, username1, line1Username) {
 		this.unformattedText = unformattedText;
 		
 		// if we already formatted this text
@@ -21,6 +22,7 @@ class SkypeCopyPasteFormatter {
 		
 		this._removeFancyPunctuation();
 		this.username1 = username1;
+		this.line1Username = line1Username ? line1Username : '???';
 		this._findOtherUsername();
 		this.currentUsername = "";
 		this._makeLinesObject();
@@ -57,18 +59,13 @@ class SkypeCopyPasteFormatter {
 		return original.replace(regex, replaceTxt) ;
 	}
 	
-	/** The first couple of lines don't have a username yet. Find the first known username, then use that to fix these first couple of lines. */
+	/** The first couple of lines don't have a username yet. Replace it with this.line1Username */
 	_fixUsernameOnFirstLines() {
-		// iterate through first few lines, set them to [[???]], since we can't guarantee that the first lines are a certain username, when Skype does its groupings it does them by time, not by username
 		for ( let key in this.lines ) {
 			let username = this.lines[key]['username'];
 			
 			if ( ! username ) {
-				if ( this.linesWithKnownUsernameCount ) {
-					this.lines[key]['username'] = '???';
-				} else {
-					this.lines[key]['username'] = this.username1;
-				}
+				this.lines[key]['username'] = this.line1Username;
 			} else {
 				break;
 			}
@@ -140,6 +137,7 @@ function getCookie(name) {
 
 window.addEventListener('DOMContentLoaded', (e) => {
 	let username = document.getElementById('username');
+	let line1Username = document.getElementById('line-1-username');
 	let log = document.getElementById('log');
 	let format = document.getElementById('format');
 	
@@ -148,10 +146,16 @@ window.addEventListener('DOMContentLoaded', (e) => {
 		username.value = cookieUsername;
 	}
 	
+	let cookieLine1Username = getCookie('line1Username');
+	if ( cookieLine1Username ) {
+		line1Username.value = cookieLine1Username;
+	}
+	
 	format.addEventListener('click', function(e) {
 		let formatter = new SkypeCopyPasteFormatter();
-		log.value = formatter.getFormattedText(log.value, username.value);
+		log.value = formatter.getFormattedText(log.value, username.value, line1Username.value);
 		
 		document.cookie = 'username=' + username.value;
+		document.cookie = 'line1Username=' + line1Username.value;
 	});
 });

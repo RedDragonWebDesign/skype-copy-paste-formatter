@@ -147,3 +147,11 @@ Ok.
 ========================= Double fancy punctuation
 
 “““
+
+========================= Text without usernames should generate [???] for username
+
+Line 1
+
+Line 2
+
+Line 3
