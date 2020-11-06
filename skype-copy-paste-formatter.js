@@ -15,8 +15,8 @@ class SkypeCopyPasteFormatter {
 	getFormattedText(unformattedText, username1, line1Username) {
 		this.unformattedText = unformattedText;
 		
-		// if we already formatted this text
-		if ( this.unformattedText.trim().startsWith('[[') ) {
+		let alreadyFormatted = this.unformattedText.trim().startsWith('[[');
+		if ( alreadyFormatted ) {
 			return this.unformattedText;
 		}
 		
