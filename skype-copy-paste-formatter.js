@@ -23,7 +23,6 @@ class SkypeCopyPasteFormatter {
 		this._removeFancyPunctuation();
 		this.username1 = username1 ? username1 : '???';
 		this.line1Username = line1Username ? line1Username : '???';
-		this._findOtherUsername();
 		this.currentUsername = "";
 		this._makeLinesObject();
 		this._fixUsernameOnFirstLines();
@@ -74,14 +73,23 @@ class SkypeCopyPasteFormatter {
 	
 	/** Makes this.lines. Also deletes blank lines, and marks lines that are times/usernames. */
 	_makeLinesObject() {
+		let lines = this.unformattedText;
+		this.lines = {};
+		let currentUsername = "";
+		
 		// Split in a couple different spots:
 		// - newline character
 		// - the pattern Text text text.Text text text. (split at the period)
 		// - the pattern Text text text?Text text text. (split at the question mark)
 		// - the pattern Text text text!Text text text. (split at the exclamation mark)
-		let lines = this.unformattedText.split(/(?<=(?:\.|\?|!))(?=[A-Z])/).join("\n").split("\n");
-		this.lines = {};
-		let currentUsername = "";
+		lines = lines.split(/(?<=(?:\.|\?|!))(?=[A-Z])/).join("\n").split("\n");
+		
+		// Split this pattern into 3 lines: Word word word.Username, 5:52AMWord word word.
+		// Using [A-Za-z ]+ as the RegEx for now, although usernames can contain more characters than this, and the user can nickname a person whatever they want, so there may be some edge cases.
+		// https://www.google.com/search?q=skype+username+characters
+		lines = lines.join("\n").replace(/(?<=\n[A-Za-z ]+, \d{1,2}:\d{2} (A|P)M)(?=[A-Z])/g, "\n").split("\n");
+		
+		this._findOtherUsername(lines);
 		
 		for ( let key in lines ) {
 			let value = lines[key];
@@ -109,11 +117,15 @@ class SkypeCopyPasteFormatter {
 		}
 	}
 	
-	_findOtherUsername() {
-		var myRegexp = /^(.*), \d{1,2}:\d{2} (AM|PM)$/m;
-		var match = myRegexp.exec(this.unformattedText);
-		if ( match ) {
-			this.username2 = match[1];
+	_findOtherUsername(lines) {
+		for ( let key in lines ) {
+			let value = lines[key];
+			
+			var myRegexp = /^(.*), \d{1,2}:\d{2} (AM|PM)$/m;
+			var match = myRegexp.exec(value);
+			if ( match ) {
+				this.username2 = match[1];
+			}
 		}
 	}
 	

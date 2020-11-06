@@ -155,3 +155,7 @@ Line 1
 Line 2
 
 Line 3
+
+========================= For logs with no line breaks, handle username in middle of log correctly
+
+The word word word.They word word word.Username, 5:52 AMIf word word word. The word word word.The word word word. The word word word.The word word word.
