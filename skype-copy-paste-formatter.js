@@ -135,6 +135,17 @@ function getCookie(name) {
 	if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function setValueAndUpdateUndoStack(textarea, text) {
+	// Must select all, so that the old text is deleted.
+	textarea.focus();
+	textarea.select();
+	
+	// https://stackoverflow.com/a/55174561/3480193
+	if ( ! document.execCommand('insertText', false, text) ) {
+		textarea.setRangeText(text);
+	}
+}
+
 window.addEventListener('DOMContentLoaded', (e) => {
 	let username = document.getElementById('username');
 	let line1Username = document.getElementById('line-1-username');
@@ -153,7 +164,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
 	
 	format.addEventListener('click', function(e) {
 		let formatter = new SkypeCopyPasteFormatter();
-		log.value = formatter.getFormattedText(log.value, username.value, line1Username.value);
+		let newText = formatter.getFormattedText(log.value, username.value, line1Username.value);
+		setValueAndUpdateUndoStack(log, newText);
 		
 		document.cookie = 'username=' + username.value;
 		document.cookie = 'line1Username=' + line1Username.value;
