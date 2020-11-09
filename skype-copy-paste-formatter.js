@@ -140,6 +140,7 @@ class SkypeCopyPasteFormatter {
 		// return JSON.stringify(this.lines).replace(/\},"/g, "\"\n\"");
 	}
 }
+module.exports = SkypeCopyPasteFormatter;
 
 function getCookie(name) {
 	const value = `; ${document.cookie}`;
