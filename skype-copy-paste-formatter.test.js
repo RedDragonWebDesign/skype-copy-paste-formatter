@@ -1,5 +1,6 @@
 // Type this into console: yarn test
 // Tutorial: https://jestjs.io/docs/en/getting-started
+// yarn test --coverage=true to get code coverage report
 
 const SkypeCopyPasteFormatter = require('./skype-copy-paste-formatter');
 
