@@ -8,7 +8,7 @@ class SkypeCopyPasteFormatter {
 	formattedText = "";
 	username1 = ""; // name from "Your Username" text box
 	username2 = ""; // name extracted from log, interlocutor username
-	line1Username = ""; // name from "Line 1 Username" text box
+	line1Username = ""; // named determined by Line 1 Username radio button choice
 	lines = {};
 	linesWithKnownUsernameCount = 0;
 	
