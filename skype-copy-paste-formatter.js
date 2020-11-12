@@ -22,9 +22,9 @@ class SkypeCopyPasteFormatter {
 		
 		this._removeFancyPunctuation();
 		this.username1 = username1 ? username1 : '???';
-		this.line1Username = line1Username ? line1Username : '???';
 		this.currentUsername = "";
 		this._makeLinesObject();
+		this.line1Username = (line1Username == 'you') ? this.username1 : this.username2;
 		this._fixUsernameOnFirstLines();
 		
 		this.formattedText = this._convertLinesObjectToString();
@@ -166,7 +166,8 @@ function setValueAndUpdateUndoStack(textarea, text) {
 
 window.addEventListener('DOMContentLoaded', (e) => {
 	let username = document.getElementById('username');
-	let line1Username = document.getElementById('line-1-username');
+	let line1UsernameYou = document.querySelector('[name="line-1-username"][value="you"]');
+	let line1UsernameOtherPerson = document.querySelector('[name="line-1-username"][value="other-person"]');
 	let log = document.getElementById('log');
 	let format = document.getElementById('format');
 	
@@ -176,13 +177,24 @@ window.addEventListener('DOMContentLoaded', (e) => {
 	}
 	
 	let cookieLine1Username = getCookie('line1Username');
-	if ( cookieLine1Username ) {
-		line1Username.value = cookieLine1Username;
+	if ( cookieLine1Username == 'you' ) {
+		line1UsernameYou.checked = true;
+		line1UsernameOtherPerson.checked = false;
+	} else if ( cookieLine1Username == 'other-person' ) {
+		line1UsernameYou.checked = false;
+		line1UsernameOtherPerson.checked = true;
 	}
 	
 	format.addEventListener('click', function(e) {
+		// This needs to be refreshed every time, because the checked element may change.
+		let line1Username = document.querySelector('[name="line-1-username"]:checked');
+		
 		let formatter = new SkypeCopyPasteFormatter();
-		let newText = formatter.getFormattedText(log.value, username.value, line1Username.value);
+		let newText = formatter.getFormattedText(
+			log.value,
+			username.value,
+			line1Username.value
+		);
 		setValueAndUpdateUndoStack(log, newText);
 		
 		document.cookie = 'username=' + username.value;

@@ -29,7 +29,7 @@ Yeah, but 4k can't even have 144hz yet
 
 And it stresses out the VC more than 1080p or 2k`,
 'Jeff22',
-'Bob44'
+'other-person'
 	)).toBe(
 `[[Bob44]] I'm getting ready to consider 2k (not 4k) for a main monitor
 [[Bob44]] But, I don't want to spend too much
@@ -52,7 +52,7 @@ test('No usernames', () => {
 Yeah 3rd monitor, gaming specs would prob be overkill
 Just need to drag some windows on it when I'm multitasking for work`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] Haha no worries
 [[Jeff22]] Yeah 3rd monitor, gaming specs would prob be overkill
@@ -70,7 +70,7 @@ Haha no worries
 Yeah 3rd monitor, gaming specs would prob be overkill
 Just need to drag some windows on it when I'm multitasking for work`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] Haha no worries
 [[Jeff22]] Yeah 3rd monitor, gaming specs would prob be overkill
@@ -91,41 +91,11 @@ But, I don't want to spend too much
 7:27 PM
 Have you tried out 2k? Is it noticeably better?`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Bob44]] I'm getting ready to consider 2k (not 4k) for a main monitor
 [[Bob44]] But, I don't want to spend too much
 [[Jeff22]] Have you tried out 2k? Is it noticeably better?`
-	);
-});
-
-
-
-test('Blank "Line 1 Username" - should result in [[???]]', () => {
-	let scpf = new SkypeCopyPasteFormatter();
-	expect(scpf.getFormattedText(
-`I'm getting ready to consider 2k (not 4k) for a main monitor 
-
-But, I don't want to spend too much
-
-7:27 PM
-Have you tried out 2k? Is it noticeably better?
-
-Bob44, 7:27 PM
-I have not.
-
-But its gonna be awhile before 4k
-
-Cause gaming still not there`,
-'Jeff22',
-''
-	)).toBe(
-`[[???]] I'm getting ready to consider 2k (not 4k) for a main monitor
-[[???]] But, I don't want to spend too much
-[[Jeff22]] Have you tried out 2k? Is it noticeably better?
-[[Bob44]] I have not.
-[[Bob44]] But its gonna be awhile before 4k
-[[Bob44]] Cause gaming still not there`
 	);
 });
 
@@ -144,7 +114,7 @@ test("Already formatted (don't double format)", () => {
 [[Bob44]] Yeah, but 4k can't even have 144hz yet
 [[Bob44]] And it stresses out the VC more than 1080p or 2k`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Bob44]] I'm getting ready to consider 2k (not 4k) for a main monitor 
 [[Bob44]] But, I don't want to spend too much
@@ -160,68 +130,6 @@ test("Already formatted (don't double format)", () => {
 
 
 
-test('Blank "Line 1 Username" - should result in [[???]]', () => {
-	let scpf = new SkypeCopyPasteFormatter();
-	expect(scpf.getFormattedText(
-`Line 1
-
-Line 2
-
-
-User1, 3:16 PM
-Line 1
-
-Line 2
-
-
-User1, 4:02 PM
-Line 1
-
-Line 2
-
-Line 1
-
-Line 2
-
-Line 1
-
-Line 2
-
-Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line 
-
-4:21 PM
-Line 1
-Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line 
-Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line 
-Line 2
-User1, 4:26 PM
-Line 1
-
-Line 2`,
-'Jeff22',
-''
-	)).toBe(
-`[[???]] Line 1
-[[???]] Line 2
-[[User1]] Line 1
-[[User1]] Line 2
-[[User1]] Line 1
-[[User1]] Line 2
-[[User1]] Line 1
-[[User1]] Line 2
-[[User1]] Line 1
-[[User1]] Line 2
-[[User1]] Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line
-[[Jeff22]] Line 1
-[[Jeff22]] Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line
-[[Jeff22]] Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line Long Line
-[[Jeff22]] Line 2
-[[User1]] Line 1
-[[User1]] Line 2`
-	);
-});
-
-
 
 test('Trim test (1 space at end of every line)', () => {
 	let scpf = new SkypeCopyPasteFormatter();
@@ -229,7 +137,7 @@ test('Trim test (1 space at end of every line)', () => {
 `Testing 123 
 Testing 123 `,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] Testing 123
 [[Jeff22]] Testing 123`
@@ -248,7 +156,7 @@ Of the emergency broadcast system.
 I see.
 Ok.`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] Testing.
 [[Jeff22]] Hello, how are you?
@@ -278,7 +186,7 @@ test('Fancy punctuation', () => {
 '—': '--',
 '…': '...',`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] '"': '"',
 [[Jeff22]] '"': '"',
@@ -300,7 +208,7 @@ test('Double fancy punctuation', () => {
 	expect(scpf.getFormattedText(
 `“““`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] """`
 	);
@@ -317,7 +225,7 @@ Line 2
 
 Line 3`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] Line 1
 [[Jeff22]] Line 2
@@ -332,7 +240,7 @@ test('For logs with no line breaks, handle username in middle of log correctly',
 	expect(scpf.getFormattedText(
 `The word word word.They word word word.Username, 5:52 AMIf word word word. The word word word.The word word word. The word word word.The word word word.`,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 `[[Jeff22]] The word word word.
 [[Jeff22]] They word word word.
@@ -351,7 +259,7 @@ test('', () => {
 	expect(scpf.getFormattedText(
 ``,
 'Jeff22',
-'Jeff22'
+'you'
 	)).toBe(
 ``
 	);

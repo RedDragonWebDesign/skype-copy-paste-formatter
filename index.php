@@ -18,11 +18,33 @@
 	Skype copy paste is truly awful these days. The text is lacking names, has way too many line breaks, and is hard to read. This tool will format the log in the style that was more popular back in the days of AIM, MSN, and Trillian. It will put the person's name in front of every line.
 	</p>
 	
-	<p>
-	Your Username: <input type="text" id="username" value="Jeff22"><br />
-	Other Person's Username: [Will Be Detected]<br />
-	Line 1 Username: <input type="text" id="line-1-username" value="Bob44"><br />
-	</p>
+	<table>
+		<tr>
+			<td>
+				<strong>Your Username:</strong>
+			</td>
+			<td>
+				<input type="text" id="username" value="Jeff22">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>Other Username:</strong>
+			</td>
+			<td>
+				[Will Be Detected]
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>Line 1 Username:</strong>
+			</td>
+			<td>
+				<input type="radio" name="line-1-username" value="you" checked>You 
+				<input type="radio" name="line-1-username" value="other-person">Other Person
+			</td>
+		</tr>
+	</table>
 	
 	<p>
 	<textarea id="log">I'm getting ready to consider 2k (not 4k) for a main monitor 
